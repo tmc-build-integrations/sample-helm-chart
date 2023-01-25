@@ -5,10 +5,14 @@
 replicaCount: 1
 
 image:
-  repository: nginx
-  pullPolicy: IfNotPresent
+  repository: harbor-repo.vmware.com/tmcbuildintegrations/private-helm-poc
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "0.1.0"
+
+placeholderSecret:
+  name: ""
+  namespace: ""
 
 imagePullSecrets: []
 nameOverride: ""
