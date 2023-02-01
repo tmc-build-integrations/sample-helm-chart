@@ -20,18 +20,9 @@ spec:
       labels:
         {{- include "sample-helm-chart.selectorLabels" . | nindent 8 }}
     spec:
-      {{- if .Values.imagePullSecrets }}
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- else }}
-      imagePullSecrets:
-        {{- if .Values.placeholderSecret.name }}
-        - name: {{ .Values.placeholderSecret.name }}
-        {{- else }}
-        - name: {{ .Release.Name }}-placeholder-secret
-        {{- end }}
       {{- end }}
       serviceAccountName: {{ include "sample-helm-chart.serviceAccountName" . }}
       securityContext:
